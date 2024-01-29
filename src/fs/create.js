@@ -12,11 +12,15 @@ const create = async () => {
             await fs.access(filePath)
             throw new Error('FS operation failed')
         } catch (error) {
-            await fs.writeFile(filePath, 'I am fresh and young')
+            if (error.code === 'ENOENT') {
+                await fs.writeFile(filePath, 'I am fresh and young')
+            } else {
+                throw error
+            }
         }
     } catch (error) {
         throw error
     }
 }
 
-create().catch(err => console.error(err))
+await create()
