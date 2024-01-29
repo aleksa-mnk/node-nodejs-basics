@@ -1,11 +1,15 @@
 import { promises as fs } from 'fs'
-import { join } from 'path'
 import { cp } from 'fs/promises'
+import { fileURLToPath } from 'url'
+import path from 'path'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 const copy = async () => {
     try {
-        const sourceFolder = join('src', 'fs', 'files')
-        const targetFolder = join('src', 'fs', 'files_copy')
+        const sourceFolder = path.join(__dirname, 'files')
+        const targetFolder = path.join(__dirname, 'files_copy')
 
         const sourceExists = await fs.access(sourceFolder).then(() => true).catch(() => false)
         const targetExists = await fs.access(targetFolder).then(() => true).catch(() => false)

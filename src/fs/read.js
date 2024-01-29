@@ -1,9 +1,13 @@
 import { promises as fs } from 'fs'
-import { join } from 'path'
+import { fileURLToPath } from 'url'
+import path from 'path'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 const read = async () => {
     try {
-        const filePath = join('src', 'fs', 'files', 'fileToRead.txt')
+        const filePath = join(__dirname, 'files', 'fileToRead.txt')
 
         await fs.access(filePath)
 
