@@ -7,7 +7,7 @@ const __dirname = path.dirname(__filename)
 
 const read = async () => {
     try {
-        const filePath = join(__dirname, 'files', 'fileToRead.txt')
+        const filePath = path.join(__dirname, 'files', 'fileToRead.txt')
 
         await fs.access(filePath)
 
